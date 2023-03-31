@@ -20,9 +20,9 @@ let constant = "This is a constant" // creates a constant
     STRINGS
  */
 
-let string = "this is a string"
+var string = "this is a string"
 
-let multiline_string =
+var multiline_string =
 """
 this is a
 multiline string
@@ -37,11 +37,11 @@ content
     ADDITIONAL METHODS FOR STRINGS
  */
 
-let strLength = string.count
-let uppercaseStr = string.uppercased()
+var strLength = string.count
+var uppercaseStr = string.uppercased()
 
-let beginsWith = string.hasPrefix("this is") // true
-let endsWith = string.hasSuffix("banana") // false
+var beginsWith = string.hasPrefix("this is") // true
+var endsWith = string.hasSuffix("banana") // false
 
 /*
     INTEGERS
@@ -55,21 +55,21 @@ intVar += 5 // intVar = 20
     ADDITIONAL INTEGER METHODS
  */
 
-let checkMultiple = intVar.isMultiple(of: 5) // true
+var checkMultiple = intVar.isMultiple(of: 5) // true
 
 /*
     DECIMALS
  */
 
-let decVar = 0.1 // is of type Double
-let flVar: Float = 0.1 // type can be explicitly defined
+var decVar = 0.1 // is of type Double
+var flVar: Float = 0.1 // type can be explicitly defined
 
 /*
     BOOLEANS
  */
 
-let isTrue = true
-let isFalse = !true
+var isTrue = true
+var isFalse = !true
 
 /*
     ADDITIONAL BOOLEAN METHODS
@@ -83,20 +83,20 @@ gameOver.toggle() // gameOver = true
     JOINING STRINGS AND STRING INTERPOLATION
  */
 
-let firstPart = "Hello "
-let secondPart = " World!"
-let partsJoined = firstPart + secondPart // Hello World!
+var firstPart = "Hello "
+var secondPart = " World!"
+var partsJoined = firstPart + secondPart // Hello World!
 
-let people = "Haters"
-let action = "hate"
-let lyric = people + " gonna " + action // Haters gonna hate
+var people = "Haters"
+var action = "hate"
+var lyric = people + " gonna " + action // Haters gonna hate
 
-let name = "Taylor"
-let age = 26
-let message = "My name is \(name) and I'm \(age) years old"
+var name = "Taylor"
+var age = 26
+var message = "My name is \(name) and I'm \(age) years old"
 // My name is Taylor and I'm 26 years old
 
-let strCalc = "5 + 5 = \(5 + 5)" // 5 + 5 = 10
+var strCalc = "5 + 5 = \(5 + 5)" // 5 + 5 = 10
 
 
 /*
@@ -106,7 +106,7 @@ let strCalc = "5 + 5 = \(5 + 5)" // 5 + 5 = 10
 var nums = [1, 2, 3, 4, 5]
 var strs = ["One", "Two", "Three"]
 
-let four = nums[3]
+var four = nums[3]
 
 nums.append(6) // nums = [1, 2, 3, 4, 5, 6]
 strs.append("Four") // str = ["One", "Two", "Three", "Four"]
@@ -114,24 +114,24 @@ strs.append("Four") // str = ["One", "Two", "Three", "Four"]
 // let notAllowed = nums + strs
 // Binary operator '+' cannot be applied to operands of type '[Int]' and '[String]'
 
-let anotherNums = [7]
-let allowedArrAdd = nums + anotherNums
+var anotherNums = [7]
+var allowedArrAdd = nums + anotherNums
 
 /*
     ARRAY DECLARATION FOR EMPTY ARRAYS
  */
 
-let altArr = Array<Int>()
-let betterAltArr = [Int]()
+var altArr = Array<Int>()
+var betterAltArr = [Int]()
 
 
 /*
     ADDITIONAL ARRAY METHOD
  */
 
-let numsCount = nums.count
-let numsContains = nums.contains(2)
-let strsContains = strs.contains("One")
+var numsCount = nums.count
+var numsContains = nums.contains(2)
+var strsContains = strs.contains("One")
 
 nums.remove(at: 2)
 
@@ -144,7 +144,7 @@ nums.removeAll()
     DICTIONARIES
  */
 
-let dictEx = [
+var dictEx = [
     "name": "Taylor Swift",
     "job": "Singer",
     "location": "Nashville",
@@ -179,7 +179,7 @@ dictExplicit.removeAll()
     and does not keep any specific order
  */
 
-let aSet = Set(["One", "Two", "Three"])
+var aSet = Set(["One", "Two", "Three"])
 var initSet = Set<String>()
 initSet.insert("Item One")
 
@@ -210,3 +210,99 @@ var day = Weekday.monday
 day = .tuesday
 day = .wednesday
 type(of: day)
+
+
+/*
+    TYPE ANNOTATIONS
+ */
+
+var surname = "Lasso" // type String is inferred
+var surnameExplicit: String = "Lasso" // type String explicitly stated
+
+var doubleNum = 0 // is Integer
+var doubleNumExplicit: Double = 0 // is Decimal
+
+
+var typeArr: [String] = ["Eh"]
+var typeDict: [String: String] = ["key": "value", "anotherKey": "anotherValue"]
+var typeSet: Set<String> = Set(["ayy"])
+
+
+/*
+    IF ELSE CONDITIONAL
+ */
+
+var someCondition = true
+var anotherCondition = true
+
+if someCondition && anotherCondition {
+    // do something
+} else if anotherCondition {
+    // do something
+} else {
+    // do something
+}
+
+/*
+    SWITCH STATEMENT
+ */
+
+var someDay = Weekday.monday
+
+/*
+    switch statement prints:
+        monday
+        tuesday
+ */
+
+switch someDay {
+case .monday :
+    print("monday")
+    fallthrough
+case .tuesday :
+    print("tuesday")
+case .wednesday:
+    print("wednesday")
+default:
+    print("free")
+}
+
+
+/*
+    TERNARY CONDITIONAL OPERATOR
+ */
+
+let sayMonday = someDay == .monday ? "it is monday" : "it is not monday";
+
+
+/*
+    FOR LOOPS
+ */
+
+var start = 1;
+var end = 3;
+
+for str in aSet{
+    print(str)
+}
+
+for i in 1...10 {
+    print(i)
+} // 1, 2, 3, ... , 9, 10
+
+for i in 1..<10 {
+    print(i)
+} // 1, 2, 3, ... , 9
+
+for i in start...end {
+    print(i)
+} // 1, 2, 3
+
+for _ in 1...3 { // when loop variable not needed
+    print("hallo")
+}
+
+/*
+    WHILE LOOPS
+ */
+
