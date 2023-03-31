@@ -306,3 +306,29 @@ for _ in 1...3 { // when loop variable not needed
     WHILE LOOPS
  */
 
+var countdown = 5
+while countdown > 0 {
+    print(countdown)
+    countdown -= 1
+}
+
+countdown = 5
+repeat { // do...while equivalent
+    print(countdown)
+    countdown -= 1
+} while countdown > 0
+
+/*
+    notes:
+        continue and break work just like in java
+ */
+
+
+/*
+    FUNCTIONS
+ */
+
+func thisIsAFunction(a: Int, b: Int) -> Int {
+    return a + b
+}
+var funcRes = thisIsAFunction(a: 3, b: 5)
