@@ -332,3 +332,106 @@ func thisIsAFunction(a: Int, b: Int) -> Int {
     return a + b
 }
 var funcRes = thisIsAFunction(a: 3, b: 5)
+
+/*
+    Output multiple values with tuples
+    Arrays, Sets and Dictionaries also work
+    outputting tuples dont require default values like in dictionaries
+    because the function declares the output, so it is guaranteed
+ */
+
+func getUser() -> (firstName: String, lastName: String) {
+    return (firstName: "Max", lastName: "Mustermann")
+}
+
+getUser().firstName
+var (userFirstName, userLastName) = getUser()
+
+func getUser2() -> (firstName: String, lastName: String) {
+    return ("Max", "Mustermann")
+}
+
+getUser2().firstName
+
+func getUser3() -> (String, String) {
+    return ("Max", "Mustermann")
+}
+
+getUser3().0
+getUser3().1
+
+/*
+    Customizing parameter labels in functions
+ */
+
+func isUppercased(str: String) -> Bool {
+    return str == str.uppercased()
+}
+
+isUppercased(str: "COOL") // true
+
+func isUppercased(_ str: String) -> Bool {
+    return str == str.uppercased()
+}
+
+isUppercased("COOL") // true
+
+func add(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+add(a: 3,b: 5) // 8
+
+func add(_ a: Int, to b: Int) -> Int {
+    return a + b
+}
+
+add(3, to: 5)
+
+/*
+    default values for function parameters
+ */
+
+func getNumber(_ num: Int = 10) -> Int {
+    return num
+}
+
+getNumber() // 10
+
+
+/*
+    ERROR HANDLING
+ */
+
+// Define possible Errors
+enum PasswordError: Error {
+    case short, simple
+}
+
+// Define a function that can throw error
+func checkPassword(_ passwd: String) throws -> String {
+    if passwd.count < 5 {
+        throw PasswordError.short
+    }
+    
+    if passwd == "12345" {
+        throw PasswordError.simple
+    }
+    
+    return passwd.count < 8 ? "OK" : passwd.count < 10 ? "GOOD" : "EXCELLENT"
+}
+
+// Use function in a block that might throw errros
+do {
+    let myPw = "12345"
+    let pwCheck = try checkPassword(myPw)
+    print("My password is \(pwCheck)")
+} catch PasswordError.short {
+    print("Your password is too short")
+} catch PasswordError.simple {
+    print("Your password is too simple")
+} catch { // this is a general catch block if all the others fail to catch
+    print("Error: \(error.localizedDescription)")
+}
+
+
