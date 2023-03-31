@@ -39,3 +39,39 @@ func strContainSameLetters(a: String, b: String) -> Bool {
 func pythagoras(a: Double, b: Double) -> Double {
     return sqrt(pow(a, 2) + pow(b, 2))
 }
+
+enum CalcIntSqrtError: Error {
+    case outOfBounds, noRoot
+}
+
+func calcIntSqrt(of num: Int) throws -> Int {
+    /*
+        Takes in an integer from 1 to 10000
+        returns the integer root if it exists
+     */
+    
+    if num > 10000 || num < 1 {
+        throw CalcIntSqrtError.outOfBounds
+    }
+    
+    var i = 1
+    while i * i != num  {
+        if (i > 10000) {
+            throw CalcIntSqrtError.noRoot
+        }
+        i += 1
+    }
+    
+    return i
+}
+
+//do {
+//    let res = try calcIntSqrt(of: 1512)
+//    print(res)
+//} catch CalcIntSqrtError.outOfBounds {
+//    print("Error: input is out of bounds")
+//} catch CalcIntSqrtError.noRoot {
+//    print("Error: input does not have an integer root")
+//} catch {
+//    print("Error: \(error.localizedDescription)")
+//}
