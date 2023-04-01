@@ -435,3 +435,59 @@ do {
 }
 
 
+/*
+    CLOSURES
+ */
+
+strs // ["One", "Two", "Three", "Four"]
+strs.sorted(by: {(a: String, b: String) -> Bool in
+    return a < b // sorts alphabetically
+}) // ["Four", "One", "Three", "Two"]
+
+
+var clAdd = {(a: Int, b: Int) -> Int in
+    return a + b
+}
+
+clAdd(1, 3) // no labels in arguments
+
+
+// clAdd can be written like this (only for conceptual understanding)
+func funcAdd(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+var clAdd2: (Int, Int) -> Int = funcAdd
+clAdd2(1, 3)
+
+/*
+    several forms of shorthands for closures exist
+ */
+
+// the standard form
+strs.filter({(str: String) -> Bool in // ["Two", "Three"]
+    return str.hasPrefix("T")
+})
+
+// filter has input defined so closure knows what is expected
+// so the type definition can be left out
+// parens optional
+strs.filter {str in // ["Two", "Three"]
+    return str.hasPrefix("T")
+}
+
+// if only one line is to be returned then return keyword can be left out
+// also parens are optional here
+strs.filter {str in // ["Two", "Three"]
+    str.hasPrefix("T")
+}
+
+// the ultimate form of gigachad programming
+// parameters can be substituted with $0, $1, ... in the same order of args
+strs.filter {$0.hasPrefix("T")}
+
+/*
+    Don't use the ultimate gigachad form with complex closures!
+    Nobody knows what $6 is!
+ */
+
