@@ -491,3 +491,92 @@ strs.filter {$0.hasPrefix("T")}
     Nobody knows what $6 is!
  */
 
+/*
+    STRUCTS
+ */
+
+struct Album {
+    var title: String = "Untitled" // default value
+    let artist: String
+    var year: Int
+    
+    func printSummary() {
+        print("\(title) \(year) by \(artist)")
+    }
+    
+    /*
+        functions that mutate the variables of a struct must me
+        declared with the mutating keyword
+     */
+    mutating func setYearTo9999() {
+        year = 9999
+    }
+}
+
+let someAlbum = Album(title: "Hello", artist: "WTF", year: 2021)
+var someUntitledAlbum = Album(artist: "me", year: 1888)
+someUntitledAlbum.artist
+someUntitledAlbum.year
+someUntitledAlbum.setYearTo9999()
+someUntitledAlbum.year
+someUntitledAlbum.year = 5505
+someUntitledAlbum.year
+
+/*
+    getters and setters
+ */
+
+struct Employee {
+    let name: String
+    var vacationAllocated = 14
+    var vacationTaken = 0
+    
+    // computed property
+    var vacationRemaining: Int {
+        get {
+            vacationAllocated - vacationTaken
+        }
+        set {
+            // newValue is a struct specific variable for the setter
+            vacationAllocated = vacationTaken + newValue
+        }
+    }
+}
+
+/*
+    property observers
+ */
+
+struct Game {
+    var score = 0 {
+        willSet {
+            // executes before a change to score happens
+        }
+        didSet {
+            // executes after a change to score happened
+        }
+    }
+}
+
+/*
+    custom initializer
+ */
+
+struct Player {
+    let name: String
+    let number: Int
+    
+    // call: let player = Player(name: "playerName")
+    init(name: String) {
+        self.name = name
+        self.number = Int.random(in: 1...20)
+    }
+    
+    // call: let player = Player()
+    init() {
+        self.name = "anonymous"
+        self.number = -1
+    }
+}
+
+
