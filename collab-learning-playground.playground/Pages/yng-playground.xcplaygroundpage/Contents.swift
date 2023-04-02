@@ -88,4 +88,26 @@ func funWithClosures() {
     }
 }
 
+struct Car {
+    let model: String
+    let seats: Int
+    let gears: Int
+    private(set) var currentGear: Int = 1
+    
+    init(model: String, seats: Int, gears: Int) {
+        self.model = model
+        self.seats = seats
+        self.gears = gears
+    }
+    
+    mutating func gearUp() {
+        currentGear = currentGear < gears ? currentGear + 1 : currentGear
+    }
+    
+    mutating func gearDown() {
+        currentGear = currentGear > 1 ? currentGear - 1 : currentGear
+    }
+}
+
+var newCar = Car(model: "Honda Civic", seats: 4, gears: 5)
 

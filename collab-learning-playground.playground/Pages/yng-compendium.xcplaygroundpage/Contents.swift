@@ -579,4 +579,50 @@ struct Player {
     }
 }
 
+/*
+    ACCESS CONTROL
+    private - no access from outside struct
+    fileprivate - no access from outside current file
+    public - allow access from anywhere
+ 
+    private(set) - selector: only read access (write access is private)
+ */
 
+struct BankAccount {
+    private(set) var funds = 1000
+    
+    mutating func withdraw(amount: Int) {
+        funds = funds - amount >= 0 ? funds - amount : funds
+    }
+    
+    mutating func deposit(amount: Int) {
+        funds += amount
+    }
+}
+
+/*
+    STATIC PROPERTIES AND METHODS
+    similar to static in java
+ */
+
+struct Stuffs {
+    static var count = 0
+    
+    // static funcs can access static variables without Self.
+    static func resetCount() {
+        count = 0
+    }
+
+    init() {
+        Self.count += 1
+    }
+}
+
+/*
+    self - instance
+    Self - the Struct itself
+ */
+
+var stuff1 = Stuffs()
+var stuff2 = Stuffs()
+Stuffs.count // 2
